@@ -43,7 +43,13 @@ export class UpdateMissionComponent implements OnInit {
           cityId: ['', Validators.compose([Validators.required])],
           startDate: ['', Validators.compose([Validators.required])],
           endDate: ['', Validators.compose([Validators.required])],
-          totalSheets: [''],
+
+
+          //? totalSheets------------------------------------------------
+          totalSheets: ['',Validators.compose([Validators.required])],
+          //? totalSheets------------------------------------------------
+
+
           missionThemeId: ['', Validators.compose([Validators.required])],
           missionSkillId: ['', Validators.compose([Validators.required])],
           missionImages: [''],
@@ -59,6 +65,16 @@ export class UpdateMissionComponent implements OnInit {
     this.GetMissionThemeList();
     this.missionDocText = '';
   }
+
+
+
+  //? we need to write getter for totalSheets else it will give----------------------------------------------------------
+  //!error TS2339: Property 'totalSheets' does not exist on type 'UpdateMissionComponent'.
+  get totalSheets() {
+    return this.editMissionForm.get('totalSheets') as FormControl;
+  }
+  //? -------------------------------------------------------------------------------------------------------------------
+
 
   CountryList(){
     this.service.CountryList().subscribe((data:any)=>{
